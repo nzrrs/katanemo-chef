@@ -5,7 +5,7 @@ const SYSTEM_PROMPT = `
 You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. Format your response in markdown to make it easier to render to a web page
 `
 
-const HF_ACCESS_TOKEN = import.meta.env.VITE_HF_ACCESS_TOKEN;
+const HF_ACCESS_TOKEN = import.meta.env.VITE_HF_ACCESS_TOKEN; // YOU NEED TO HAVE AN API KEY IN .env FIRST 
 
 if (!HF_ACCESS_TOKEN) {
 	throw new Error("Hugging Face access token (VITE_HF_ACCESS_TOKEN) is not defined in environment variables.");
