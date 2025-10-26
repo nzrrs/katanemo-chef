@@ -138,15 +138,6 @@ ul.ingredients-list > li {
   margin-bottom: 20px;
 }
 
-.suggested-recipe-container h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 10px;
-  border-bottom: 2px solid #f2c94c;
-  display: inline-block;
-  padding-bottom: 4px;
-}
 
 /* Ingredients & instructions lists */
 .suggested-recipe-container ul,
