@@ -3,7 +3,10 @@
 A web application that generates meal recipes based on the ingredients you have. It leverages the **Hugging Face `katanemo/Arch-Router-1.5B` model** for AI-based recipe generation and formats the output using a **Markdown parser** for clean display. Built with **React + Vite**.
 
 ---
+## 🚀 Live Demo  
+🔗 [**Visit the Website**](https://katenamo-chef.netlify.app/)
 
+---
 ## Features
 
 * Input a list of ingredients and get a full recipe suggestion.
