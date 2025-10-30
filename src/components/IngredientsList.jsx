@@ -1,4 +1,8 @@
-export default function IngredientsList({ ingredients, getRecipe }) {
+export default function IngredientsList({
+  ingredients,
+  getRecipe,
+  resetIngredients,
+}) {
   let ingredientsListItems = ingredients.map((ingredient) => {
     return <li key={ingredient}>{ingredient}</li>;
   });
@@ -14,13 +18,10 @@ export default function IngredientsList({ ingredients, getRecipe }) {
             <h3>Ready for a recipe?</h3>
             <p>Generate a recipe from your list of ingredients.</p>
           </div>
-          <button 
-            onClick={() => {
-              getRecipe();
-            }}
-          >
-            Get a recipe
-          </button>
+          <div style={{ display: "flex", gap: "10px", width: "100%" }}>
+            <button onClick={getRecipe}>Get a recipe</button>
+            <button onClick={resetIngredients}>Reset ingredients</button>
+          </div>
         </div>
       )}
     </section>
