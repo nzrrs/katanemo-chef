@@ -1,14 +1,18 @@
-import logo from "../assets/images/chef-claude-icon.png";
+import logo from "../assets/images/katanemo-logo.png";
 
-export default function Header({toggleTheme}) {
+export default function Header({ toggleTheme }) {
+
   return (
     <header>
-      <img src={logo} alt="claude-chef-logo" />
-      <h1>Chef Claude</h1>
+      <img src={logo} alt="katanemo-chef-logo" />
+      <h1>Chef katanemo</h1>
       <div className="themeToggle">
-        <button onClick={toggleTheme} style={{ position: "fixed", top: 0, right: 10 }}>
-            togglebtn
-      </button>
+        <input
+          id="toggle"
+          class="toggle"
+          type="checkbox"
+          onChange={toggleTheme}
+        ></input>
       </div>
     </header>
   );
