@@ -9,7 +9,7 @@ export default function Header({ toggleTheme }) {
       <div className="themeToggle">
         <input
           id="toggle"
-          class="toggle"
+          className="toggle"
           type="checkbox"
           onChange={toggleTheme}
         ></input>

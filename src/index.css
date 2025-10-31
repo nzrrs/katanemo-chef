@@ -1,5 +1,5 @@
 /* GLOBAL VARIABLES */
-/* 🌍 GLOBAL VARIABLES */
+
 :root {
   /* Default = Light theme (fallback) */
   --background: #faf9f6;
@@ -181,7 +181,13 @@ ul.ingredients-list > li {
   max-width: 700px;
   margin: 30px auto;
 }
-
+pre{
+  background-color: var(--recipeContainer);
+  color: var(--textColor);
+  padding: 16px;
+  white-space: pre-wrap;
+  overflow-x: hidden;
+}
 /* Paragraph & headings */
 .suggested-recipe-container p {
   margin-bottom: 20px;
