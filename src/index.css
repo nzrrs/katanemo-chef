@@ -218,9 +218,9 @@ pre{
 /* Magic */
 .toggle {
   position: absolute;
-  top: 8px;
+  bottom: 8px;
   right: 10px;
-  margin: 30px;
+  margin: 20px;
 	 --size: 2rem;
 	 appearance: none;
 	 outline: none;
