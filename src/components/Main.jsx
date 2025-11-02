@@ -2,10 +2,12 @@ import React from "react";
 import KatenamoRecipe from "./KatenamoRecipe";
 import IngredientsList from "./IngredientsList";
 import { getRecipeFromMistral } from "../ai";
+import Loader from "./Loader";
 
 export default function Main() {
   const [ingredients, setIngredient] = React.useState([]);
   const [recipe, setRecipe] = React.useState("");
+  const [loader, setLoader] = React.useState(false);
 
   function addIngredient(formData) {
     const newIngredient = formData.get("ingredient").trim();
@@ -14,13 +16,18 @@ export default function Main() {
     }
   }
   function resetIngredients() {
-    setIngredient([])
+    setIngredient([]);
     setRecipe("");
   }
+ 
+
   async function getRecipe() {
-    const recipeMarkdown = await getRecipeFromMistral(ingredients);
-    setRecipe(recipeMarkdown);
-  }
+  setLoader(true);
+  const recipeMarkdown = await getRecipeFromMistral(ingredients);
+  setRecipe(recipeMarkdown);
+  setLoader(false);
+}
+
 
   return (
     <main>
@@ -45,6 +52,7 @@ export default function Main() {
         />
       )}
       {recipe && <KatenamoRecipe recipe={recipe} />}
+      {loader && <Loader />}
     </main>
   );
 }
