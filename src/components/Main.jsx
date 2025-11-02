@@ -5,45 +5,54 @@ import { getRecipeFromMistral } from "../ai";
 import Loader from "./Loader";
 
 export default function Main() {
-  const [ingredients, setIngredient] = React.useState([]);
+  const [ingredients, setIngredients] = React.useState([]);
   const [recipe, setRecipe] = React.useState("");
   const [loader, setLoader] = React.useState(false);
-
-  function addIngredient(formData) {
-    const newIngredient = formData.get("ingredient").trim();
-    if (newIngredient && !ingredients.includes(newIngredient)) {
-      setIngredient((prevIngredientes) => [...prevIngredientes, newIngredient]);
-    }
-  }
-  function resetIngredients() {
-    setIngredient([]);
-    setRecipe("");
-  }
- 
+  const recipeSection = React.useRef(null);
 
   async function getRecipe() {
-  setLoader(true);
-  const recipeMarkdown = await getRecipeFromMistral(ingredients);
-  setRecipe(recipeMarkdown);
-  setLoader(false);
-}
+    setLoader(true);
+    const recipeMarkdown = await getRecipeFromMistral(ingredients);
+    setRecipe(recipeMarkdown);
+    setLoader(false);
+  }
 
+  function addIngredient(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newIngredient = formData.get("ingredient").trim();
+    if (newIngredient.length > 2 && !ingredients.includes(newIngredient)) {
+      setIngredients((prev) => [...prev, newIngredient]);
+      e.target.reset();
+    }
+    else{
+      window.alert("Enter a new valid ingredient")
+    }
+  }
+
+  function resetIngredients() {
+    setIngredients([]);
+    setRecipe("");
+  }
+
+  React.useEffect(() => {
+    if (recipe && recipeSection.current) {
+      recipeSection.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [recipe]);
 
   return (
     <main>
-      <form action={addIngredient} className="add-ingredient-form">
-        {/* Input field for adding ingredients */}
+      <form onSubmit={addIngredient} className="add-ingredient-form">
         <input
           type="text"
           placeholder="e.g oregano"
-          aria-label="Add ingredient" // Accessibility label for screen readers
+          aria-label="Add ingredient"
           name="ingredient"
         />
-        {/* Button to submit the ingredient */}
         <button>+ Add ingredient</button>
       </form>
 
-      {/* Render IngredientsList component if there are ingredients */}
       {ingredients.length > 0 && (
         <IngredientsList
           ingredients={ingredients}
@@ -51,8 +60,12 @@ export default function Main() {
           resetIngredients={resetIngredients}
         />
       )}
-      {recipe && <KatenamoRecipe recipe={recipe} />}
-      {loader && <Loader />}
+
+      {loader ? (
+        <Loader />
+      ) : (
+        recipe && <KatenamoRecipe recipe={recipe} ref={recipeSection} />
+      )}
     </main>
   );
 }
